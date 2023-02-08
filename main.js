@@ -1,12 +1,10 @@
 const results = document.querySelector("#results");
-const footer = document.querySelector(".footer");
+const btnNext = document.querySelector("#btnNext");
+const btnPrev = document.querySelector("#btnPrev");
 const navigationButton = document.querySelector("#navigationButtons");
-let btnNext = document.getElementById("#btnNext");
-let btnPrev = document.getElementById("#btnPrev");
-
-//  console.log(navigationButton.innerHTML)
+navigationButton.style.visibility = "hidden";
 const asyncFetch = async (value) => {
-  const res = await fetch(`https://swapi.dev/api/${value}`).catch((err) => {
+  let res = await fetch(`https://swapi.dev/api/${value}`).catch((err) => {
     alert(err);
   });
   if (res) {
@@ -18,16 +16,25 @@ const asyncFetch = async (value) => {
 };
 const resultShow = (data, value) => {
   let output = "";
-  let navButtonsOutput = "";
-  // if (!data.next) {
-  //   btnNext.style.visibility = "hidden";
-  // }
+  let getNextData = async (e) => {
+    e.preventDefault();
+    console.log(data.next, "woks");
+    let responseNext = await fetch(data.next);
+    const nextData = await responseNext.json();
+    console.log(nextData);
+    resultShow(nextData);
+  };
+  if (data.next) {
+    btnNext.style.visibility = "visible";
+    btnNext.addEventListener("click", getNextData);
+    console.log(data.count);
+  }
+  if (data.previous) {
+    btnPrev.style.visibility = "visible";
+    btnPrev.addEventListener("click", getPrevData);
+  }
   if (value === "people") {
     data.results.forEach((item) => {
-      if (data.next) {
-      }
-      if (data.previous) {
-      }
       output += `<div class="card p-3 m-3" style="opacity:1">
                 <div class="card-body">
                 <h3 class="card-title">${item.name}</h3>
@@ -45,8 +52,7 @@ const resultShow = (data, value) => {
                 </div>
   </div>
   `;
-
-      console.log(data, "data");
+      // console.log(data, "data");
     });
   }
   if (value === "starships") {
