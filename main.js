@@ -60,8 +60,7 @@ const resultShow = async (data, value) => {
                 </ul>
                 
                 <div class="card-body">
-                  <a href="#" class="card-link">Card link</a>
-                  <a href="#" class="card-link">Another link</a>
+                  
                 </div>
   </div>
   `;
@@ -80,8 +79,7 @@ const resultShow = async (data, value) => {
                   <li class="list-group-item">Consumables: ${item.consumables}</li>
                 </ul>
                 <div class="card-body">
-                  <a href="#" class="card-link">Card link</a>
-                  <a href="#" class="card-link">Another link</a>
+                  
                 </div>
   </div>`;
     });
@@ -100,8 +98,7 @@ const resultShow = async (data, value) => {
                   <li class="list-group-item">Producer: ${item.producer}</li>
                 </ul>
                 <div class="card-body">
-                  <a href="#" class="card-link">Card link</a>
-                  <a href="#" class="card-link">Another link</a>
+                  
                 </div>
   </div>`;
     });
